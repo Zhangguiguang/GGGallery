@@ -20,29 +20,33 @@
 
     GGGallery *gallery = [[GGGallery alloc] init];
     [self.view addSubview:gallery];
-    
-    gallery.animationType = @"push";
-    gallery.frame = CGRectMake(0, 0, self.view.frame.size.width, 300);
     gallery.dataSource = self;
     gallery.delegate = self;
+    gallery.frame = CGRectMake(0, 0, self.view.frame.size.width, 300);
+    gallery.animationType = @"push";
+    gallery.needPageControl = YES;
 }
 
 - (NSInteger)numberOfPageInGallery:(GGGallery *)gallery {
     return 6;
 }
 
-- (UIImage *)gallery:(GGGallery *)gallery imageAtPageIndex:(NSInteger)index {
-    return [UIImage imageNamed:[NSString stringWithFormat:@"%ld.jpg", index]];
+- (UIImage *)gallery:(GGGallery *)gallery imageAtPage:(NSInteger)page {
+    return [UIImage imageNamed:[NSString stringWithFormat:@"%ld.jpg", page]];
 }
 
-- (void)gallery:(GGGallery *)gallery didSelectedPageAtIndex:(NSInteger)index {
-    NSLog(@"%ld", index);
+- (NSString *)gallery:(GGGallery *)gallery titleAtPage:(NSInteger)page {
+    return [NSString stringWithFormat:@"标题 %ld", page];
+}
+
+- (void)gallery:(GGGallery *)gallery didSelectedPage:(NSInteger)page {
+    NSLog(@"%ld", page);
 }
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
 }
 
 @end
