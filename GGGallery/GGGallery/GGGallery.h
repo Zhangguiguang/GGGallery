@@ -18,11 +18,18 @@
 @interface GGGallery : UIImageView
 @property (nonatomic, assign) id<GGGalleryDelegate> delegate;
 @property (nonatomic, assign) id<GGGalleryDataSource> dataSource;
+/**
+ 动画效果, 默认push, 其他值可以设为: fade, movein, reveal, cube, oglFlip, suckEffect,
+ rippleEffect, pageCurl, pageUnCurl, cameralIrisHollowOpen, cameraIrisHollowClose
+ */
+@property (nonatomic, strong) NSString *animationType;
 @end
 
 @protocol GGGalleryDataSource <NSObject>
-- (NSInteger)numOfPage;
+@required
+- (NSInteger)numberOfPageInGallery:(GGGallery *)gallery;
 - (UIImage *)gallery:(GGGallery *)gallery imageAtPageIndex:(NSInteger)index;
+@optional
 - (NSString *)gallery:(GGGallery *)gallery titleAtPageIndex:(NSInteger)index;
 @end
 
