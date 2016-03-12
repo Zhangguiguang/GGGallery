@@ -24,10 +24,15 @@
     gallery.dataSource = self;
     gallery.delegate = self;
     gallery.needPageControl = YES;
+    gallery.animationType = @"rippleEffect";
+    /* 
+     动画效果, 默认push, 其他值可以设为: fade, movein, reveal, cube, oglFlip, suckEffect,
+     rippleEffect, pageCurl, pageUnCurl, cameralIrisHollowOpen, cameraIrisHollowClose
+     */
 }
 
 - (NSInteger)numberOfPageInGallery:(GGGallery *)gallery {
-    return 3;
+    return 6;
 }
 
 - (UIImage *)gallery:(GGGallery *)gallery imageAtPage:(NSInteger)page {

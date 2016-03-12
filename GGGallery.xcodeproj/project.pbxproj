@@ -31,7 +31,6 @@
 		342F0B3A1C93B87100735487 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
 		342F0B3B1C93B87100735487 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
 		342F0B3C1C93B87100735487 /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.jpg; sourceTree = "<group>"; };
-		3471BEBF1C942D09006DC016 /* ScreenFlow.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ScreenFlow.mp4; sourceTree = "<group>"; };
 		34A591A91C92FB76002C438E /* GGGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GGGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34A591AD1C92FB76002C438E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		34A591AF1C92FB76002C438E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -96,7 +95,6 @@
 		34A591AB1C92FB76002C438E /* GGGallery */ = {
 			isa = PBXGroup;
 			children = (
-				3471BEBF1C942D09006DC016 /* ScreenFlow.mp4 */,
 				342F0B361C93B87100735487 /* images */,
 				342F0B1B1C93A81E00735487 /* GGGallery */,
 				34A591AF1C92FB76002C438E /* AppDelegate.h */,
