@@ -7,10 +7,9 @@
 //
 
 #import "ViewController.h"
-#import "testClass.h"
 
-@interface ViewController ()
-@property (nonatomic, strong) testClass *test;
+@interface ViewController () <UITableViewDataSource>
+
 @end
 
 @implementation ViewController
@@ -18,21 +17,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    int a = 3;
-    int b = 4;
-    _sum = a + b;
-    NSLog(@"sum = %d", _sum);
     
-    [self sayByeBye];
-    [self sayHello];
+    
+    
+    
 }
 
-- (void)sayByeBye {
-    NSLog(@"ByeBye");
-}
-- (void)sayHello {
-    NSLog(@"hello");
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
