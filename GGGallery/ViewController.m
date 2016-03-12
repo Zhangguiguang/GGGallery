@@ -20,15 +20,14 @@
 
     GGGallery *gallery = [[GGGallery alloc] init];
     [self.view addSubview:gallery];
-    gallery.frame = CGRectMake(0, 0, self.view.frame.size.width, 300);
+    gallery.frame = CGRectMake(0, 20, self.view.frame.size.width, 280);
     gallery.dataSource = self;
     gallery.delegate = self;
-    gallery.animationType = @"push";
     gallery.needPageControl = YES;
 }
 
 - (NSInteger)numberOfPageInGallery:(GGGallery *)gallery {
-    return 6;
+    return 3;
 }
 
 - (UIImage *)gallery:(GGGallery *)gallery imageAtPage:(NSInteger)page {
@@ -43,10 +42,8 @@
     NSLog(@"%ld", page);
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-
 }
 
 @end

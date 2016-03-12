@@ -137,9 +137,10 @@
         _pageControl = [[UIPageControl alloc] init];
         [_bottomView addSubview:_pageControl];
         _pageControl.userInteractionEnabled = NO;
+        _pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
         _pageControl.translatesAutoresizingMaskIntoConstraints = NO;
         NSDictionary *views = @{@"view":_pageControl};
-        addConstraints(_bottomView, views, @"H:[view]-|");
+        addConstraints(_bottomView, views, @"H:[view]-20-|");
         addConstraints(_bottomView, views, @"V:|[view]|");
     }
 }
