@@ -12,7 +12,6 @@
 {
     NSInteger _currentPage;
     NSInteger _numberOfPage;
-    CGFloat _bottomViewHeight;
     UIView *_bottomView;
     UILabel *_titleLabel;
     UIPageControl *_pageControl;
@@ -81,7 +80,6 @@
     }
     if (_needPageControl) {
         _pageControl.currentPage = page;
-        NSLog(@"%@", _pageControl);
     }
 }
 
@@ -115,17 +113,23 @@
 #pragma mark ---------------添加视图的方法---------------
 - (void)addBottomView {
     if (_bottomView == nil) {
-        _bottomViewHeight = 40;
+        CGFloat viewHeight = 40;
         _bottomView = [[UIView alloc] init];
         [self addSubview:_bottomView];
-        _bottomView.backgroundColor = [UIColor blueColor];
-//        _bottomView.alpha = 0.5;
         
         // 添加约束
         _bottomView.translatesAutoresizingMaskIntoConstraints = NO;  // ....这句真是重中之重
         NSDictionary *views = @{@"view":_bottomView};
         addConstraints(self, views, @"H:|[view]|");
-        addConstraints(self, views, [NSString stringWithFormat:@"V:[view(%lf)]|", _bottomViewHeight]);
+        addConstraints(self, views, [NSString stringWithFormat:@"V:[view(%lf)]|", viewHeight]);
+        
+        // 添加渐变背景
+        CAGradientLayer *layer = [[CAGradientLayer alloc] init];
+        layer.frame = CGRectMake(0, 0, self.frame.size.width, viewHeight);
+        [_bottomView.layer addSublayer:layer];
+        layer.colors = @[(__bridge id)[UIColor clearColor].CGColor, (__bridge id)[UIColor blackColor].CGColor];
+        layer.startPoint = CGPointMake(0, 0);
+        layer.endPoint = CGPointMake(0, 1);
     }
 }
 - (void)addPageControl {
@@ -143,6 +147,7 @@
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
         [_bottomView addSubview:_titleLabel];
+        _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         NSDictionary *views = @{@"view":_titleLabel};
         addConstraints(_bottomView, views, @"H:|-30-[view]");

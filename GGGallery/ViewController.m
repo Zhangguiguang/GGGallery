@@ -20,9 +20,9 @@
 
     GGGallery *gallery = [[GGGallery alloc] init];
     [self.view addSubview:gallery];
+    gallery.frame = CGRectMake(0, 0, self.view.frame.size.width, 300);
     gallery.dataSource = self;
     gallery.delegate = self;
-    gallery.frame = CGRectMake(0, 0, self.view.frame.size.width, 300);
     gallery.animationType = @"push";
     gallery.needPageControl = YES;
 }
