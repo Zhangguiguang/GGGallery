@@ -15,8 +15,10 @@
     UIView *_bottomView;
     UILabel *_titleLabel;
     UIPageControl *_pageControl;
+    CATransition *_animation;
 }
 
+#pragma mark ---------------初始化---------------
 - (instancetype)init
 {
     return [self initWithFrame:CGRectZero];
@@ -29,6 +31,10 @@
         self.clipsToBounds = YES;
         self.userInteractionEnabled = YES;
         _animationType = @"push";
+        
+        _animation = [[CATransition alloc] init];
+        _animation.duration = 0.5;
+        _animation.speed = 0.3;
     }
     return self;
 }
@@ -57,18 +63,16 @@
     
 }
 - (void)swipeGesture:(UISwipeGestureRecognizer *)gesture {
-    CATransition *animation = [[CATransition alloc] init];
-    animation.type = _animationType;
-    animation.duration = 0.5;
+    _animation.type = _animationType;
     
     if (gesture.direction == UISwipeGestureRecognizerDirectionLeft) {
-        animation.subtype = kCATransitionFromRight;
+        _animation.subtype = kCATransitionFromRight;
         _currentPage = (_currentPage + 1) % _numberOfPage;
     } else {
-        animation.subtype = kCATransitionFromLeft;
+        _animation.subtype = kCATransitionFromLeft;
         _currentPage = (_currentPage - 1 + _numberOfPage) % _numberOfPage;
     }
-    [self.layer addAnimation:animation forKey:nil];
+    [self.layer addAnimation:_animation forKey:nil];
     [self showDataAtPage:_currentPage];
 }
 - (void)showDataAtPage:(NSInteger)page {
@@ -118,11 +122,8 @@
         [self addSubview:_bottomView];
         
         // 添加约束
-        _bottomView.translatesAutoresizingMaskIntoConstraints = NO;  // ....这句真是重中之重
-        NSDictionary *views = @{@"view":_bottomView};
-        addConstraints(self, views, @"H:|[view]|");
-        addConstraints(self, views, [NSString stringWithFormat:@"V:[view(%lf)]|", viewHeight]);
-        
+        addConstraints(self, _bottomView, @"H:|[view]|");
+        addConstraints(self, _bottomView, [NSString stringWithFormat:@"V:[view(%lf)]|", viewHeight]);
         // 添加渐变背景
         CAGradientLayer *layer = [[CAGradientLayer alloc] init];
         layer.frame = CGRectMake(0, 0, self.frame.size.width, viewHeight);
@@ -138,10 +139,8 @@
         [_bottomView addSubview:_pageControl];
         _pageControl.userInteractionEnabled = NO;
         _pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
-        _pageControl.translatesAutoresizingMaskIntoConstraints = NO;
-        NSDictionary *views = @{@"view":_pageControl};
-        addConstraints(_bottomView, views, @"H:[view]-20-|");
-        addConstraints(_bottomView, views, @"V:|[view]|");
+        addConstraints(_bottomView, _pageControl, @"H:[view]-20-|");
+        addConstraints(_bottomView, _pageControl, @"V:|[view]|");
     }
 }
 - (void)addTitleLabel {
@@ -149,14 +148,15 @@
         _titleLabel = [[UILabel alloc] init];
         [_bottomView addSubview:_titleLabel];
         _titleLabel.textColor = [UIColor whiteColor];
-        _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        NSDictionary *views = @{@"view":_titleLabel};
-        addConstraints(_bottomView, views, @"H:|-30-[view]");
-        addConstraints(_bottomView, views, @"V:|[view]|");
+        addConstraints(_bottomView, _titleLabel, @"H:|-30-[view]");
+        addConstraints(_bottomView, _titleLabel, @"V:|[view]|");
     }
 }
-
-void addConstraints(UIView *view, NSDictionary *views, NSString *format) {
+// 简化添加约束的方法，传入父视图，子视图，以及约束语句VFL
+void addConstraints(UIView *view, UIView *subView, NSString *format) {
+    subView.translatesAutoresizingMaskIntoConstraints = NO;  // ....这句真是重中之重
+    NSDictionary *views = @{@"view" : subView};
     [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:format options:0 metrics:nil views:views]];
 }
+
 @end
