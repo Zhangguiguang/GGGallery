@@ -34,7 +34,6 @@
         
         _animation = [[CATransition alloc] init];
         _animation.duration = 0.5;
-        _animation.speed = 0.6;
     }
     return self;
 }
