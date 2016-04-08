@@ -34,7 +34,7 @@
         
         _animation = [[CATransition alloc] init];
         _animation.duration = 0.5;
-        _animation.speed = 0.3;
+        _animation.speed = 0.6;
     }
     return self;
 }
@@ -62,6 +62,7 @@
     }
     
 }
+
 - (void)swipeGesture:(UISwipeGestureRecognizer *)gesture {
     _animation.type = _animationType;
     
@@ -87,7 +88,6 @@
     }
 }
 
-
 #pragma mark -----------设置了delegate-----------
 - (void)setDelegate:(id<GGGalleryDelegate>)delegate {
     _delegate = delegate;
@@ -101,7 +101,7 @@
     [_delegate gallery:self didSelectedPage:_currentPage];
 }
 
-#pragma mark ---------------设置了needPageControl---------------
+#pragma mark ---------------设置needPageControl---------------
 - (void)setNeedPageControl:(BOOL)needPageControl {
     _needPageControl = needPageControl;
     if (needPageControl) {

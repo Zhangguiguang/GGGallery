@@ -24,7 +24,7 @@
     gallery.dataSource = self;
     gallery.delegate = self;
     gallery.needPageControl = YES;
-//    gallery.animationType = @"cube";
+//    gallery.animationType = @"rippleEffect";
     /*
      动画效果, 默认push, 其他值可以设为: fade, movein, reveal, cube, oglFlip, suckEffect,
      rippleEffect, pageCurl, pageUnCurl, cameralIrisHollowOpen, cameraIrisHollowClose
@@ -32,7 +32,7 @@
 }
 
 - (NSInteger)numberOfPageInGallery:(GGGallery *)gallery {
-    return 6;
+    return 5;
 }
 
 - (UIImage *)gallery:(GGGallery *)gallery imageAtPage:(NSInteger)page {
@@ -50,5 +50,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
 
 @end
